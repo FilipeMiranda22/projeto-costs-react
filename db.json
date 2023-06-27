@@ -2,10 +2,10 @@
   "projects": [
     {
       "name": "Projeto DOMINIC",
-      "budget": "4000",
+      "budget": "4004",
       "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
+        "id": "4",
+        "name": "Planejamento"
       },
       "cost": 0,
       "services": [],
@@ -13,10 +13,10 @@
     },
     {
       "name": "Projeto TAGS",
-      "budget": "5700",
+      "budget": "6000",
       "category": {
-        "id": "4",
-        "name": "Planejamento"
+        "id": "2",
+        "name": "Desenvolvimento"
       },
       "cost": 0,
       "services": [],
