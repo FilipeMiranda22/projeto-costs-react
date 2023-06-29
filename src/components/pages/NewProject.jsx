@@ -9,6 +9,11 @@ function NewProject() {
     function createPost( project ) {
         project.cost = 0;
         project.services = []
+        // Remover o símbolo "R$" e substituir a vírgula por ponto
+        const numericValue = project.budget.replace('R$', '').replace(/\./g, "").replace(',', '.');
+
+        // Converter para float
+        project.budget = parseFloat(numericValue);
 
         fetch("http://localhost:5000/projects", {
             method: "POST",
@@ -19,7 +24,7 @@ function NewProject() {
             
         })
             .then((resp) => resp.json())
-            .then((data) => {
+            .then(() => {
                 history('/projects', { state: {message : "Projeto criado com sucesso!"} });
             })
             .catch((err) => console.log(err))

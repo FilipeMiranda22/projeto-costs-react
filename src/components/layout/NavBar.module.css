@@ -17,7 +17,11 @@
 
 .item a {
     color: #FFF;
+    font-weight: bold;
+    font-size: 16px;
     text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.3s;
 }
 
 .item a:hover {

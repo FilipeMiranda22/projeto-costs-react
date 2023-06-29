@@ -50,12 +50,13 @@ function ProjectForm({ btnText, handleSubmit, projectData }) {
                 value={project.name ? project.name : ''}
             />
             <Input 
-                type="number" 
+                type="text" 
                 text="Orçamento do Projeto" 
                 name="budget" 
-                placeholder="Insira o Orçamento Total "
+                placeholder="R$ 0,00"
+                moeda={true}
                 handleOnChange={handleChange}
-                value={project.budget ? project.budget : ''}
+                value={project.budget ? project.budget.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : ''}
             />
             <Select 
                 name="caregory_id" 

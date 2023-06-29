@@ -1,57 +1,22 @@
 {
   "projects": [
     {
-      "name": "Projeto DOMINIC",
-      "budget": "4004",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 3
-    },
-    {
-      "name": "Projeto TAGS",
-      "budget": "6000",
+      "name": "Projeto Primando",
+      "budget": 800,
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 460,
+      "cost": 500,
       "services": [
         {
-          "name": "Atividade_SE_Q1",
-          "cost": "1",
-          "description": "asdasds",
-          "id": "7c7c4194-7131-440b-9841-a7e736b01594"
-        },
-        {
-          "name": "Atividade_SE_Q1q",
-          "cost": "122",
-          "description": "asd",
-          "id": "9ffe276f-a894-4a9d-9a5b-2956a26b157f"
-        },
-        {
-          "name": "Atividade_SE_Q3",
-          "cost": "2",
-          "description": "asdasd",
-          "id": "75692d1d-cb07-42dc-99bd-2f4290aa530b"
-        },
-        {
-          "name": "Entradas 2  Copy",
-          "cost": "123",
-          "description": "asdasd",
-          "id": "1f4da10f-0a56-4d7c-aeb2-9ddbaca4f392"
-        },
-        {
-          "name": "R",
-          "cost": "212",
-          "description": "asdasd",
-          "id": "b8d75dec-06da-42c8-be85-37605f022ade"
+          "name": "S1",
+          "cost": 500,
+          "description": "Aprender os conceitos básicos de PHP",
+          "id": "54507eb0-0a98-446d-863c-1cac679e05ec"
         }
       ],
-      "id": 4
+      "id": 1
     }
   ],
   "categories": [

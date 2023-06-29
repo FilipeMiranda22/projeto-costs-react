@@ -27,10 +27,11 @@ function ServiceForm({ handleSubmit, btnText, projectData }) {
                 handleOnChange={handleChange}
             />
             <Input 
-                type="number"
+                type="text"
                 text="Custo do Serviço"
                 name="cost"
-                placeholder="Insira o valor total"
+                placeholder="R$ 0,00"
+                moeda={true}
                 handleOnChange={handleChange}
             />
             <Input 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { parse, v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import Loading from '../layout/Loading';
 import Container from '../layout/Container';
 import ProjectForm from '../project/ProjectForm';
@@ -40,6 +40,17 @@ function Project() {
     function editPost(project) {
         setMessage('')
 
+        console.log(project.budget);
+        
+        const numericValue = typeof project.budget === "string" ? 
+        project.budget.replace("R$", "").replace(/\./g, "").replace(",", ".") : project.budget;
+
+        console.log("NUMERIC", numericValue)
+
+        project.budget = parseFloat(numericValue);
+
+        console.log("DEPOIS", project.budget);
+
         if(project.budget < project.cost){
             setMessage("O Orçamento não pode ser maior que o custo do Projeto!");
             setType("error");
@@ -64,13 +75,14 @@ function Project() {
     }
 
     function createService(project) {
-        setMessage("")
-
+        setMessage('');
         const lastService = project.services[project.services.length - 1]
 
-        lastService.id = uuidv4()
+        const lastServiceCost = typeof lastService.cost === "string" ? 
+        parseFloat(lastService.cost.replace("R$", "").replace(/\./g, "").replace(",", ".")) : lastService.cost;
 
-        const lastServiceCost = lastService.cost
+        lastService.id = uuidv4()
+        lastService.cost = lastServiceCost;
 
         const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
 
@@ -93,13 +105,41 @@ function Project() {
         })
             .then(resp => resp.json())
             .then((data) => {
-                setShowServiceForm(false)
+                setServices(data.services)
+                setShowServiceForm(!showServiceForm)
+                setMessage('Serviço adicionado!')
+                setType('success')
             })
             .catch(err => console.log(err))
     }
 
-    function removeService() {
+    function removeService(id, cost) {
+        setMessage('')
 
+        const servicesUpdated = project.services.filter(
+            (service) => service.id !== id
+        )
+
+        const projectUpdated = project
+
+        projectUpdated.services = servicesUpdated
+        projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
+
+        fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(projectUpdated)
+        })
+            .then(resp => resp.json())
+            .then(() => {
+                setProject(projectUpdated)
+                setServices(servicesUpdated)
+                setMessage("Serviço removido com sucesso!")
+                setType("success")
+            })
+            .catch(err => console.log(err))
     }
 
     function toggleProjectForm() {
@@ -124,8 +164,14 @@ function Project() {
                             {!showProjectForm ? (
                                 <div className={styles.project_info}>
                                     <p><span>Categoria:</span> {project.category.name}</p>
-                                    <p><span>Total do Orçamento:</span> R${project.budget}</p>
-                                    <p><span>Total Utilizado:</span> R${project.cost}</p>
+                                    <p>
+                                        <span>Total do Orçamento:</span> 
+                                        {project.budget.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                    </p>
+                                    <p>
+                                        <span>Total Utilizado:</span> 
+                                        {project.cost.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                    </p>
                                 </div>
                             ) : (
                                 <div className={styles.project_info}>

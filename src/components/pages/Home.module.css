@@ -18,10 +18,6 @@
     transition: font-size 0.3s;
 }
 
-.home_container span:hover {
-    font-size: 42px;
-}
-
 .home_container p {
     margin-bottom: 1.5em;
     color: #7b7b7b;

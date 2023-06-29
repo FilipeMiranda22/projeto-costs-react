@@ -12,7 +12,7 @@ function ProjectCard ({ id, name, budget, category, handleRemove}) {
     return (
         <div className={styles.project_card}>
             <h4>{name}</h4>
-            <p><span>Orçamento:</span> R${budget}</p>
+            <p><span>Orçamento:</span> {budget.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
             <p className={styles.category_text}>
                 <span className={`${styles[category.toLowerCase()]}`}></span> {category}
             </p>
