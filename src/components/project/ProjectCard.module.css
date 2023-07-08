@@ -7,16 +7,14 @@
     width: 20%;
     margin: 0.8%;
     transition: 0.3s;
-    transform: scale(1);
 }
 
 .project_card:hover {
     box-shadow: 0px 2px 0px 0px #FFBB33;
-    transform: scale(1.05);
+    transform: scale(1.07);
 }
 
 .project_card h4 {
-    display: inline-block;
     color: #FFBB33;
     margin-bottom: 1.3em;
     font-size: 1.3em;

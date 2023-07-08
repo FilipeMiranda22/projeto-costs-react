@@ -10,12 +10,13 @@ function NewProject() {
         project.cost = 0;
         project.services = []
         // Remover o símbolo "R$" e substituir a vírgula por ponto
-        const numericValue = project.budget.replace('R$', '').replace(/\./g, "").replace(',', '.');
+        const numericValue = typeof project.budget === "string" ?
+        project.budget.replace('R$', '').replace(/\./g, "").replace(',', '.') : project.budget;
 
         // Converter para float
         project.budget = parseFloat(numericValue);
 
-        fetch("http://localhost:5000/projects", {
+        fetch("https://api-costs-json-server.vercel.app/projects", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
